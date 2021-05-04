@@ -15,7 +15,7 @@ freezer = Freezer(app)
 fa = FontAwesome(app)
 name="Bartosz Drozd"
 
-FREEZER_DESTINATION = 'docs'
+app.config["FREEZER_DESTINATION"] = 'docs'
 app.config['FONTAWESOME_STYLES'] = ['brands']
 
 """@app.route('/favicon.ico')

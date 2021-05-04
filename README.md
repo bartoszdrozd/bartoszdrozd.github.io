@@ -1,4 +1,4 @@
-# Simlpe static website made using Frozen-flask
+# Simple static website made using Frozen-flask
 This is an alpha version of my static website made using these technologies:
 - Flask framework
 - Frozen-flask -> module used to generate static files based on a Flask app

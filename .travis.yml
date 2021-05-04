@@ -1,0 +1,15 @@
+language: python
+python:
+- 3.6
+script:
+- python sitebuilder.py freeze
+deploy:
+  provider: script
+  skip-cleanup: false
+  script: python sitebuilder.py deploy --no-freeze --push
+  on:
+    branch: master
+    repo: bartoszdrozd/flask-static-potfolio
+env:
+  global:
+    secure: JkdvJ/FCvSK59K3yynZG+NdJDDl3V7ChivF4dRGDz6nkD6m/DsWR92xq2xECHlsgMIOMDJtVkOyoj9bvpatE/U/M/h17+M6p16BkWmJLrkWD+fD91Ast+EfYDM97f45SMEbYO7tdkvUAUR1do/uXR/o9DWvw8kgfaybNrIqdDoFSC7K12N1xwsxos1D6a5J91JIyqRzRL8QysNLxxVVB6d3sB104dwalzjQ8LjxAl4DP1xxtFcbimNsxzE0X6PDPa1GWkAC0jbsIOxl2/Z/pqm+c+x1aiiVGhbVuNWG0Vl8+0jRfEfh6QUkcG7Xhn/VcCEo/KcGiM/GChdodfYniarDkeRbKB535yTCHqNtyGWr5+F75PfswAibGIJju2Sms7AsYBe4Yn/gMwFdAWBQHLZP6f+SwOjQNbWoAIE6w9jbRLxyHmrRnnRyQGfmbDwR4zCcPEapduH0gOWb0GLk0VksMqGn+t68sqWo9A0awfNyHWukKHPWWO0+STmk112Nt/v6+Ws1uDedfBEuRmjmLyADnOItidcueHbNo0DEW5EDva2V0NjIrnIpLdgeQuEdKM9+ow+Oh3FSjRXqvGAuHWJ7x5+GqZAE8pqmTt/mp+j3UwIDE/yuT/sb4Jw4P4ndPQdCFSg4SrUXYntR3g6uFuhijE+xYci8t+UmokZhxn04=

@@ -1,0 +1,36 @@
+ .logo-image img
+    {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: -6px;
+  }
+  .color-me
+    {
+    color:black;
+  }
+
+  @media (min-width: 768px) 
+    {
+  .navbar-brand.abs
+      {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      text-align: center;
+      }
+    }
+  .nav-up
+    {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+  }
+  body 
+    {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+  }
+  .icon-color{
+    color:gray;
+  }

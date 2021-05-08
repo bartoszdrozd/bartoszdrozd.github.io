@@ -16,7 +16,7 @@ fa = FontAwesome(app)
 name="Bartosz Drozd"
 
 app.config["FREEZER_DESTINATION"] = 'docs'
-app.config['FONTAWESOME_STYLES'] = ['brands']
+app.config['FONTAWESOME_STYLES'] = ['all']
 
 """@app.route('/favicon.ico')
 def favicon():

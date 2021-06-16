@@ -62,6 +62,7 @@ def internal_error(error):
 
 if len(sys.argv) > 1 and sys.argv[1] == "build":
     freezer.freeze()
-else:
-    app.run() # for development (debug=True, port=8000)
+
+if __name__ == "__main__":
+    app.run()
         

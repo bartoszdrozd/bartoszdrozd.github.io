@@ -1,1 +1,1 @@
-web: gunicorn app:sitebuilder.py
+web: gunicorn sitebuilder:app

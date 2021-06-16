@@ -8,3 +8,4 @@ setuptools
 frozen-flask
 flask-fontawesome
 elsa
+gunicorn

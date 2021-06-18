@@ -1,0 +1,119 @@
+<html>
+    <head>
+        <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <style>
+            body { margin:0; padding:0; }
+            #map { position:absolute; top:0; bottom:0; width: 100%; }
+
+            .marker {
+              border: none;
+              cursor: pointer;
+              height: 32px;
+              width: 32px;
+              background-image: url(static/marker.png);
+              background-color: rgba(0, 0, 0, 0);
+              transform: translate(28px, 56px, 0);
+            }
+
+            .overlay {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                display: block;
+            }
+
+            .overlay button {
+                font:600 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+                background-color: #3386c0;
+                color: #fff;
+                display: block;
+                margin: 5px 0 0 0;
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+                border-radius: 3px;
+            }
+
+            .overlay button:hover {
+                background-color:#4ea0da;
+            }
+        </style>
+    </head>
+    <body>
+        <div id='map' style='justify-content: center; width: 1200px; height: 900px;'></div>
+        <div class='overlay'></div>
+        <script>
+
+        var counter = 0;
+
+        route = {{route_data|safe}}
+
+        var origin = route.geometry.coordinates[0];
+        var destination = route.geometry.coordinates[route.geometry.coordinates.length - 1];
+
+        var point = {
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": origin
+                }
+            }]
+        };
+
+        mapboxgl.accessToken = '{{ ACCESS_KEY}}';
+        var map = new mapboxgl.Map({
+            container: 'map', // container ID
+            style: 'mapbox://styles/mapbox/streets-v9', // style URL
+            center: [-18.73, 65.0], // starting position [lng, lat]
+            zoom: 6// starting zoom
+        });
+        map.scrollZoom.disable();
+        
+        var popup = new mapboxgl.Popup({
+                closeButton: false
+            });
+
+        map.on('load', function () {
+            map.addSource("route", {
+                "type": "geojson",
+                "data": route
+            });
+
+            map.addLayer({
+                "id": "route",
+                "type": "line",
+                "source": "route",
+                "layout": {
+                    "line-join": "round",
+                    "line-cap": "round"
+                },
+                "paint": {
+                    "line-color": "#007cbf",
+                    "line-width": 2
+                }
+            });
+        });
+
+        map.on('load', function () {
+            // Add this to end of function
+            var stop_locations = {{ stop_locations|safe }}
+            stop_locations.forEach(function(marker) {
+                var el = document.createElement('div');
+                el.className = 'marker';
+                //el.style.left = '-10px';
+                //el.style.top = '-20px';
+
+                new mapboxgl.Marker(el)
+                    .setLngLat(marker.geometry.coordinates)
+                    .addTo(map);
+            });
+        });
+
+        </script>
+    </body>
+</html>

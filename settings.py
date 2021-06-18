@@ -1,0 +1,3 @@
+# settings.py
+
+MAPBOX_ACCESS_KEY = 'pk.eyJ1IjoiYmFydG9zei1kcm96ZCIsImEiOiJja282eGwzZWswenoxMnZteWYxM3ByOWI3In0.3sJE35lklneHnMfNGavFww'

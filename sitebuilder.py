@@ -5,9 +5,12 @@ import os
 from flask import Flask, render_template, send_from_directory, redirect
 from flask_frozen import Freezer
 from flask_fontawesome import FontAwesome
+from dotenv import find_dotenv, load_dotenv
+
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 
 FONTAWESOME_SERVE_LOCAL = True 
-
 
 app = Flask(__name__)
 app.config.from_object(__name__)

@@ -7,9 +7,7 @@ from flask import Flask, request, session, g, redirect, \
 
 app = Flask(__name__)
 app.config.from_object(__name__)
-
 app.config.from_envvar('APP_CONFIG_FILE', silent=True)
-
 MAPBOX_ACCESS_KEY = app.config['MAPBOX_ACCESS_KEY']
 
 ROUTE = [

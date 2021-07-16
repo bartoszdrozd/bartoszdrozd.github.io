@@ -2,78 +2,78 @@
 {% block title %}My trips{% endblock %}
 {% block content %}
 
-    <body>
-        <div id='map' style='justify-content: center; width: 1200px; height: 900px;'></div>
-        <div class='overlay'></div>
-        <script>
+    <div style='min-height:600px; margin-bottom: 25px;'>
+    <div id='map' style='justify-content: center; height: 600px; position: relative; '></div>
+    </div>
+<!--     <div class='overlay'></div>
+ -->    <script>
 
-        //var counter = 0;
+    //var counter = 0;
 
-        // route = {{route_data|safe}}
+    // route = {{route_data|safe}}
 
-        // var origin = route.geometry.coordinates[0];
-        // var destination = route.geometry.coordinates[route.geometry.coordinates.length - 1];
+    // var origin = route.geometry.coordinates[0];
+    // var destination = route.geometry.coordinates[route.geometry.coordinates.length - 1];
 
-        // var point = {
-        //     "type": "FeatureCollection",
-        //     "features": [{
-        //         "type": "Feature",
-        //         "geometry": {
-        //             "type": "Point",
-        //             "coordinates": origin
-        //         }
-        //     }]
-        // }; 
+    // var point = {
+    //     "type": "FeatureCollection",
+    //     "features": [{
+    //         "type": "Feature",
+    //         "geometry": {
+    //             "type": "Point",
+    //             "coordinates": origin
+    //         }
+    //     }]
+    // }; 
 
-        mapboxgl.accessToken = '{{ ACCESS_KEY}}';
-        var map = new mapboxgl.Map({
-            container: 'map', // container ID
-            style: 'mapbox://styles/mapbox/streets-v9', // style URL
-            center: [-18.73, 65.0], // starting position [lng, lat]
-            zoom: 6// starting zoom
+    mapboxgl.accessToken = '{{ ACCESS_KEY}}';
+    var map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/mapbox/streets-v9', // style URL
+        center: [-18.73, 65.0], // starting position [lng, lat]
+        zoom: 5.5// starting zoom
+    });
+    map.scrollZoom.disable();
+    
+    var popup = new mapboxgl.Popup({
+            closeButton: false
         });
-        map.scrollZoom.disable();
-        
-        var popup = new mapboxgl.Popup({
-                closeButton: false
-            });
 
-        // map.on('load', function () {
-        //     map.addSource("route", {
-        //         "type": "geojson",
-        //         "data": route
-        //     });
+    // map.on('load', function () {
+    //     map.addSource("route", {
+    //         "type": "geojson",
+    //         "data": route
+    //     });
 
-        //     map.addLayer({
-        //         "id": "route",
-        //         "type": "line",
-        //         "source": "route",
-        //         "layout": {
-        //             "line-join": "round",
-        //             "line-cap": "round"
-        //         },
-        //         "paint": {
-        //             "line-color": "#007cbf",
-        //             "line-width": 2
-        //         }
-        //     });
-        // });
+    //     map.addLayer({
+    //         "id": "route",
+    //         "type": "line",
+    //         "source": "route",
+    //         "layout": {
+    //             "line-join": "round",
+    //             "line-cap": "round"
+    //         },
+    //         "paint": {
+    //             "line-color": "#007cbf",
+    //             "line-width": 2
+    //         }
+    //     });
+    // });
 
-        // map.on('load', function () {
-        //     // Add this to end of function
-        //     var stop_locations = {{ stop_locations|safe }}
-        //     stop_locations.forEach(function(marker) {
-        //         var el = document.createElement('div');
-        //         el.className = 'marker';
-        //         //el.style.left = '-10px';
-        //         //el.style.top = '-20px';
+    // map.on('load', function () {
+    //     // Add this to end of function
+    //     var stop_locations = {{ stop_locations|safe }}
+    //     stop_locations.forEach(function(marker) {
+    //         var el = document.createElement('div');
+    //         el.className = 'marker';
+    //         //el.style.left = '-10px';
+    //         //el.style.top = '-20px';
 
-        //         new mapboxgl.Marker(el)
-        //             .setLngLat(marker.geometry.coordinates)
-        //             .addTo(map);
-        //     });
-        // });
+    //         new mapboxgl.Marker(el)
+    //             .setLngLat(marker.geometry.coordinates)
+    //             .addTo(map);
+    //     });
+    // });
 
-        </script>
-    </body>
+    </script>
 {% endblock content %}

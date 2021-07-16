@@ -1,14 +1,16 @@
+#import elsa
 import sys
 import os
 import json
 import requests
 from geojson import Point, Feature
-#import elsa
-
 from flask import Flask, render_template, send_from_directory, redirect, request, session, g, url_for, abort, flash
 from flask_frozen import Freezer
 from flask_fontawesome import FontAwesome
 from dotenv import find_dotenv, load_dotenv
+from flask_wtf import FlaskForm
+from wtforms import StringField, TextField, SubmitField, TextAreaField
+from wtforms.validators import DataRequired, Email
 
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
@@ -24,6 +26,8 @@ name="Bartosz Drozd"
 app.config.from_envvar('APP_CONFIG_FILE', silent=True)
 
 MAPBOX_ACCESS_KEY = os.environ.get('MAPBOX_ACCESS_KEY')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+#app.config['WTF_CSRF_SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 app.config["FREEZER_DESTINATION"] = 'docs'
 app.config['FONTAWESOME_STYLES'] = ['all']
@@ -108,6 +112,17 @@ def get_route_data():
     return route_data
 
 
+class ContactForm(FlaskForm):
+    name = StringField("Name", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired(), Email()])
+    subject = TextField("Subject", validators=[DataRequired()])
+    message = TextAreaField("Message", validators=[DataRequired()])
+    submit = SubmitField("Send")
+
+
+
+# --------------------------- routes (move to another file routes.py)
+
 @app.route('/')
 def home():
     return render_template('about.html')
@@ -135,9 +150,15 @@ def trips():
         stop_locations = stop_locations
     )"""
 
-@app.route('/contact/')
+@app.route('/contact/', methods=['GET', 'POST'])
 def contact():
-    return render_template('contact.html')
+    form = ContactForm()
+ 
+    if request.method == 'POST':
+        return 'Form posted.'
+
+    elif request.method == 'GET':
+        return render_template('contact.html', form=form)
 
 @app.errorhandler(404)
 def not_found_error(error):
@@ -154,6 +175,8 @@ def internal_error(error):
 
 if len(sys.argv) > 1 and sys.argv[1] == "build":
     freezer.freeze()
+elif sys.argv[1] == "debug":
+    app.run(debug=True)
 
 if __name__ == "__main__":
     app.run()

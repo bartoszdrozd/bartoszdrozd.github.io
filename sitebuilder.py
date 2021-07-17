@@ -11,7 +11,7 @@ from dotenv import find_dotenv, load_dotenv
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Email
-from flask-mail import Message, Mail
+from flask_mail import Message, Mail
 
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)

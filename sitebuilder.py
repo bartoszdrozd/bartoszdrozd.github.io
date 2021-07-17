@@ -11,6 +11,7 @@ from dotenv import find_dotenv, load_dotenv
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Email
+from flask-mail import Message, Mail
 
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
@@ -113,10 +114,10 @@ def get_route_data():
 
 
 class ContactForm(FlaskForm):
-    name = StringField("Name", validators=[DataRequired()])
-    email = StringField("Email", validators=[DataRequired(), Email()])
-    subject = TextField("Subject", validators=[DataRequired()])
-    message = TextAreaField("Message", validators=[DataRequired()])
+    name = StringField("Name", validators=[DataRequired("Please enter your name.")])
+    email = StringField("Email", validators=[Email("Please enter your email address."), DataRequired("Please enter your email address.")])
+    subject = TextField("Subject", validators=[DataRequired("Please enter a subject.")])
+    message = TextAreaField("Message", validators=[DataRequired("Please enter a message.")])
     submit = SubmitField("Send")
 
 
@@ -155,7 +156,11 @@ def contact():
     form = ContactForm()
  
     if request.method == 'POST':
-        return 'Form posted.'
+        if form.validate() == False:
+            flash('All fields are required.')
+            return render_template('contact.html', form=form)
+        else:
+            return render_template('valid-form.html')
 
     elif request.method == 'GET':
         return render_template('contact.html', form=form)

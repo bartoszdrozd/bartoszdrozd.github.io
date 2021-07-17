@@ -28,7 +28,7 @@ app.config.from_envvar('APP_CONFIG_FILE', silent=True)
 
 MAPBOX_ACCESS_KEY = os.environ.get('MAPBOX_ACCESS_KEY')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-#app.config['WTF_CSRF_SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.config['WTF_CSRF_SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 app.config["FREEZER_DESTINATION"] = 'docs'
 app.config['FONTAWESOME_STYLES'] = ['all']

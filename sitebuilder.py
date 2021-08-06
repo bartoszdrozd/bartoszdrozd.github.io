@@ -1,11 +1,9 @@
-#import elsa
 import sys
 import os
 import json
 import requests
 from geojson import Point, Feature
 from flask import Flask, render_template, send_from_directory, redirect, request, session, g, url_for, abort, flash
-from flask_frozen import Freezer
 from flask_fontawesome import FontAwesome
 from dotenv import find_dotenv, load_dotenv
 from flask_wtf import FlaskForm
@@ -21,13 +19,12 @@ FONTAWESOME_SERVE_LOCAL = True
 mail = Mail()
 app = Flask(__name__)
 app.config.from_object(__name__)
-freezer = Freezer(app)
 fa = FontAwesome(app)
 name="Bartosz Drozd"
 
-app.config.from_envvar('APP_CONFIG_FILE', silent=True)
 
 MAPBOX_ACCESS_KEY = os.environ.get('MAPBOX_ACCESS_KEY')
+app.config.from_envvar('APP_CONFIG_FILE', silent=True)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['WTF_CSRF_SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['MAIL_SERVER']='smtp.gmail.com'
@@ -35,11 +32,11 @@ app.config['MAIL_PORT']=465
 app.config['MAIL_USE_SSL']=1
 app.config["MAIL_USERNAME"] = os.getenv('MAIL_USERNAME')
 app.config["MAIL_PASSWORD"] = os.getenv('MAIL_PASSWORD')
+app.config['FONTAWESOME_STYLES'] = ['all']
 
 mail.init_app(app)
 
-app.config["FREEZER_DESTINATION"] = 'docs'
-app.config['FONTAWESOME_STYLES'] = ['all']
+
 
 # ROUTE = [
 #     {"lat": 64.0027441, "long": -22.7066262, "name": "Keflavik Airport", "is_stop_location": True},
@@ -188,16 +185,6 @@ def not_found_error(error):
 @app.errorhandler(500)
 def internal_error(error):
     return render_template('500.html'), 500
-    
-#using elsa to deploy this shit 
-"""if __name__ == '__main__':
-    from elsa import cli
-    cli(app, base_url='https://bartoszdrozd.github.io')"""
-
-if len(sys.argv) > 1 and sys.argv[1] == "build":
-    freezer.freeze()
-elif len(sys.argv) > 1 and sys.argv[1] == "debug":
-    app.run(debug=True)
 
 if __name__ == "__main__":
     app.run()

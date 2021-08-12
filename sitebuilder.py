@@ -39,7 +39,7 @@ mail.init_app(app)
 
 
 # ROUTE = [
-#     {"lat": 64.0027441, "long": -22.7066262, "name": "Keflavik Airport", "is_stop_location": True},
+#     {"lat": 45.2273, "long": 13.8506, "name": "Istria", "is_stop_location": True},
 #     {"lat": 64.0317168, "long": -22.1092311, "name": "Hafnarfjordur", "is_stop_location": True},
 #     {"lat": 63.99879, "long": -21.18802, "name": "Hveragerdi", "is_stop_location": True},
 #     {"lat": 63.4194089, "long": -19.0184548, "name": "Vik", "is_stop_location": True},
@@ -147,14 +147,23 @@ def resume():
 
 @app.route('/my-trips/')
 def trips():
+    return render_template('my-trips.html')
+
+@app.route('/eurotrip18/')
+def trip18():
     #route_data = get_route_data()
     #stop_locations = create_stop_locations_details()
-    return render_template('mapbox_gl.html', 
+    return render_template('eurotrip18.html',
         ACCESS_KEY=MAPBOX_ACCESS_KEY)
     """
         route_data = route_data,
         stop_locations = stop_locations
     )"""
+
+@app.route('/eurotrip19/')
+def trip19():
+    return render_template('eurotrip19.html',
+        ACCESS_KEY=MAPBOX_ACCESS_KEY)
 
 @app.route('/contact/', methods=['GET', 'POST'])
 def contact():

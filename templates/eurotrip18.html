@@ -1,12 +1,14 @@
 {% extends "base.html" %}
-{% block title %}My trips{% endblock %}
+{% block title %}Eurotrip 18'{% endblock %}
 {% block content %}
 
+
+    <h1>Eurotrip 2018</h1>
+    <p>This was the first trip we made from Poland with a borrowed car. It took us almost 3 weeks. We made over 6000 kilometres and visited 6 countries (Croatia, Bosnia and Herzegovina, Montenegro, Serbia, Romania and Hungary).</p>
     <div style='min-height:600px; margin-bottom: 25px;'>
     <div id='map' style='justify-content: center; height: 600px; position: relative; '></div>
     </div>
-<!--     <div class='overlay'></div>
- -->    <script>
+    <script>
 
     //var counter = 0;
 
@@ -26,7 +28,7 @@
     //     }]
     // }; 
 
-    mapboxgl.accessToken = '{{ ACCESS_KEY}}';
+    mapboxgl.accessToken = '{{ACCESS_KEY}}';
     var map = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/mapbox/streets-v9', // style URL

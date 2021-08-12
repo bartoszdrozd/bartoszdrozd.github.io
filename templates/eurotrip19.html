@@ -1,12 +1,14 @@
 {% extends "base.html" %}
-{% block title %}My trips{% endblock %}
+{% block title %}Eurotrip 18'{% endblock %}
 {% block content %}
 
+
+    <h1>Eurotrip 2019</h1>
+    <p></p>
     <div style='min-height:600px; margin-bottom: 25px;'>
     <div id='map' style='justify-content: center; height: 600px; position: relative; '></div>
     </div>
-<!--     <div class='overlay'></div>
- -->    <script>
+    <script>
 
     //var counter = 0;
 
@@ -26,7 +28,7 @@
     //     }]
     // }; 
 
-    mapboxgl.accessToken = '{{ ACCESS_KEY}}';
+    mapboxgl.accessToken = '{{ACCESS_KEY}}';
     var map = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/mapbox/streets-v9', // style URL

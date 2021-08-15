@@ -2,6 +2,7 @@ import sys
 import os
 import json
 import requests
+from config import Config
 from geojson import Point, Feature
 from flask import Flask, render_template, send_from_directory, redirect, request, session, g, url_for, abort, flash
 from flask_fontawesome import FontAwesome
@@ -11,29 +12,11 @@ from wtforms import StringField, TextField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Email
 from flask_mail import Message, Mail
 
-dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
-load_dotenv(dotenv_path)
-
-FONTAWESOME_SERVE_LOCAL = True 
 
 mail = Mail()
 app = Flask(__name__)
 app.config.from_object(__name__)
 fa = FontAwesome(app)
-name="Bartosz Drozd"
-
-
-MAPBOX_ACCESS_KEY = os.environ.get('MAPBOX_ACCESS_KEY')
-app.config.from_envvar('APP_CONFIG_FILE', silent=True)
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-app.config['WTF_CSRF_SECRET_KEY'] = os.getenv('SECRET_KEY')
-app.config['MAIL_SERVER']='smtp.gmail.com'
-app.config['MAIL_PORT']=465
-app.config['MAIL_USE_SSL']=1
-app.config["MAIL_USERNAME"] = os.getenv('MAIL_USERNAME')
-app.config["MAIL_PASSWORD"] = os.getenv('MAIL_PASSWORD')
-app.config['FONTAWESOME_STYLES'] = ['all']
-
 mail.init_app(app)
 
 

@@ -2,6 +2,7 @@ import sys
 import os
 import json
 import requests
+from app import app
 from config import Config
 from geojson import Point, Feature
 from flask import Flask, render_template, send_from_directory, redirect, request, session, g, url_for, abort, flash
@@ -14,13 +15,10 @@ from flask_mail import Message, Mail
 
 
 mail = Mail()
-
-def create_app(config_class=Config):
-    app = Flask(__name__)
-    app.config.from_object(config_class)
-    fa = FontAwesome(app)
-    mail.init_app(app)
-    return app
+app = Flask(__name__)
+app.config.from_object(__name__)
+fa = FontAwesome(app)
+mail.init_app(app)
 
 
 

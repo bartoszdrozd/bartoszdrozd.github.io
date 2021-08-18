@@ -1,4 +1,5 @@
 import requests
+import os
 from app import app
 from config import Config
 from flask import render_template, flash, redirect, request, session, g, url_for, abort, flash, send_from_directory
@@ -8,7 +9,7 @@ from flask_mail import Message, Mail
 
 """@app.route('/favicon.ico')
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
+    return send_from_directory(os.path.join(app.root_path, 'static/img'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')"""
 
 @app.route('/')

@@ -5,6 +5,10 @@ This is an alpha version of my static website made using these technologies:
 - Bootstrap
 - check requirements.txt for installed packages
 
+To fix:
+- favicon
+- mail sending 
+
 To do:
 - decide how the static site should look like compared to the dynamic one
 - create tests to check basic funcionalities and requests (eg. mapbox request ... )

@@ -1,6 +1,10 @@
+import requests
 from app import app
-from flask import render_template, flash, redirect
+from config import Config
+from flask import render_template, flash, redirect, request, session, g, url_for, abort, flash, send_from_directory
 from app.forms import ContactForm
+from flask_mail import Message, Mail
+
 
 """@app.route('/favicon.ico')
 def favicon():
@@ -32,7 +36,7 @@ def trip18():
     #route_data = get_route_data()
     #stop_locations = create_stop_locations_details()
     return render_template('eurotrip18.html',
-        ACCESS_KEY=MAPBOX_ACCESS_KEY)
+        ACCESS_KEY=app.config['MAPBOX_ACCESS_KEY'])
     """
         route_data = route_data,
         stop_locations = stop_locations
@@ -41,7 +45,7 @@ def trip18():
 @app.route('/eurotrip19/')
 def trip19():
     return render_template('eurotrip19.html',
-        ACCESS_KEY=MAPBOX_ACCESS_KEY)
+        ACCESS_KEY=app.config['MAPBOX_ACCESS_KEY'])
 
 @app.route('/contact/', methods=['GET', 'POST'])
 def contact():

@@ -1,3 +1,7 @@
+import requests
+from geojson import Point, Feature
+
+
 ROUTE = [
     {"lat": 45.2273, "long": 13.8506, "name": "Istria", "is_stop_location": True},
     {"lat": 64.0317168, "long": -22.1092311, "name": "Hafnarfjordur", "is_stop_location": True},

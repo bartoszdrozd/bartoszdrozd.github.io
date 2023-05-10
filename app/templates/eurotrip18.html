@@ -1,81 +1,84 @@
-{% extends "base.html" %}
-{% block title %}Eurotrip 18'{% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title %}Eurotrip 18'{% endblock %} {% block
+content %}
 
+<h1>Eurotrip 2018</h1>
+<p>
+  This was the first trip we made from Poland with a borrowed car. It took us
+  almost 3 weeks. We made over 6000 kilometres and visited 6 countries (Croatia,
+  Bosnia and Herzegovina, Montenegro, Serbia, Romania and Hungary).
+</p>
+<div style="min-height: 600px; margin-bottom: 25px">
+  <div
+    id="map"
+    style="justify-content: center; height: 600px; position: relative"
+  ></div>
+</div>
+<script>
+  //var counter = 0;
 
-    <h1>Eurotrip 2018</h1>
-    <p>This was the first trip we made from Poland with a borrowed car. It took us almost 3 weeks. We made over 6000 kilometres and visited 6 countries (Croatia, Bosnia and Herzegovina, Montenegro, Serbia, Romania and Hungary).</p>
-    <div style='min-height:600px; margin-bottom: 25px;'>
-    <div id='map' style='justify-content: center; height: 600px; position: relative; '></div>
-    </div>
-    <script>
+  // route = {{route_data|safe}}
 
-    //var counter = 0;
+  // var origin = route.geometry.coordinates[0];
+  // var destination = route.geometry.coordinates[route.geometry.coordinates.length - 1];
 
-    // route = {{route_data|safe}}
+  // var point = {
+  //     "type": "FeatureCollection",
+  //     "features": [{
+  //         "type": "Feature",
+  //         "geometry": {
+  //             "type": "Point",
+  //             "coordinates": origin
+  //         }
+  //     }]
+  // };
 
-    // var origin = route.geometry.coordinates[0];
-    // var destination = route.geometry.coordinates[route.geometry.coordinates.length - 1];
+  mapboxgl.accessToken = "{{ACCESS_KEY}}";
+  var map = new mapboxgl.Map({
+    container: "map", // container ID
+    style: "mapbox://styles/mapbox/streets-v9", // style URL
+    center: [21.27, 45.15], // starting position [lng, lat]
+    zoom: 5, // starting zoom
+  });
+  map.scrollZoom.disable();
 
-    // var point = {
-    //     "type": "FeatureCollection",
-    //     "features": [{
-    //         "type": "Feature",
-    //         "geometry": {
-    //             "type": "Point",
-    //             "coordinates": origin
-    //         }
-    //     }]
-    // }; 
+  var popup = new mapboxgl.Popup({
+    closeButton: false,
+  });
 
-    mapboxgl.accessToken = '{{ACCESS_KEY}}';
-    var map = new mapboxgl.Map({
-        container: 'map', // container ID
-        style: 'mapbox://styles/mapbox/streets-v9', // style URL
-        center: [21.27, 45.15], // starting position [lng, lat]
-        zoom: 5// starting zoom
-    });
-    map.scrollZoom.disable();
-    
-    var popup = new mapboxgl.Popup({
-            closeButton: false
-        });
+  // map.on('load', function () {
+  //     map.addSource("route", {
+  //         "type": "geojson",
+  //         "data": route
+  //     });
 
-    // map.on('load', function () {
-    //     map.addSource("route", {
-    //         "type": "geojson",
-    //         "data": route
-    //     });
+  //     map.addLayer({
+  //         "id": "route",
+  //         "type": "line",
+  //         "source": "route",
+  //         "layout": {
+  //             "line-join": "round",
+  //             "line-cap": "round"
+  //         },
+  //         "paint": {
+  //             "line-color": "#007cbf",
+  //             "line-width": 2
+  //         }
+  //     });
+  // });
 
-    //     map.addLayer({
-    //         "id": "route",
-    //         "type": "line",
-    //         "source": "route",
-    //         "layout": {
-    //             "line-join": "round",
-    //             "line-cap": "round"
-    //         },
-    //         "paint": {
-    //             "line-color": "#007cbf",
-    //             "line-width": 2
-    //         }
-    //     });
-    // });
+  // map.on('load', function () {
+  //     // Add this to end of function
+  //     var stop_locations = {{ stop_locations|safe }}
+  //     stop_locations.forEach(function(marker) {
+  //         var el = document.createElement('div');
+  //         el.className = 'marker';
+  //         //el.style.left = '-10px';
+  //         //el.style.top = '-20px';
 
-    // map.on('load', function () {
-    //     // Add this to end of function
-    //     var stop_locations = {{ stop_locations|safe }}
-    //     stop_locations.forEach(function(marker) {
-    //         var el = document.createElement('div');
-    //         el.className = 'marker';
-    //         //el.style.left = '-10px';
-    //         //el.style.top = '-20px';
-
-    //         new mapboxgl.Marker(el)
-    //             .setLngLat(marker.geometry.coordinates)
-    //             .addTo(map);
-    //     });
-    // });
-
-    </script>
+  //         new mapboxgl.Marker(el)
+  //             .setLngLat(marker.geometry.coordinates)
+  //             .addTo(map);
+  //     });
+  // });
+</script>
 {% endblock content %}

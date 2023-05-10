@@ -48,6 +48,10 @@ def trip19():
     return render_template('eurotrip19.html',
         ACCESS_KEY=app.config['MAPBOX_ACCESS_KEY'])
 
+@app.route('/iss-tracker')
+def issTracker():
+    return render_template('iss.html')
+
 @app.route('/contact/', methods=['GET', 'POST'])
 def contact():
     form = ContactForm()

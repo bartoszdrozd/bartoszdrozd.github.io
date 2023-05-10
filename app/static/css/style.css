@@ -1,148 +1,167 @@
- .logo-image img {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-top: -6px;
+.logo-image img {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top: -6px;
+}
+
+.color-me {
+  color: black;
+}
+
+@media (min-width: 768px) {
+  .navbar-brand.abs {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
   }
+}
 
-  .color-me {
-    color:black;
-  }
+.nav-up {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 200;
+}
 
-  @media (min-width: 768px) {
-    .navbar-brand.abs{
-      position: absolute;
-      width: 100%;
-      left: 0;
-      text-align: center;
-      }
-    }
+body {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+}
 
-  .nav-up {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 200;
-  }
+.icon-color {
+  color: gray;
+}
 
-  body {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-  }
-
-  .icon-color{
-    color:gray;
-  }
-
-  #btn-back-to-top {
+#btn-back-to-top {
   position: fixed;
   bottom: 20px;
   right: 20px;
   display: none;
-  }
+}
 
-  #map { position:absolute; top:0; bottom:0; width: 100%; }
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
 
-  .marker {
-    border: none;
-    cursor: pointer;
-    height: 32px;
-    width: 32px;
-    background-image: url(static/marker.png);
-    background-color: rgba(0, 0, 0, 0);
-    transform: translate(28px, 56px, 0);
-  }
+.marker {
+  border: none;
+  cursor: pointer;
+  height: 32px;
+  width: 32px;
+  background-image: url(static/marker.png);
+  background-color: rgba(0, 0, 0, 0);
+  transform: translate(28px, 56px, 0);
+}
 
-  .overlay {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      display: block;
-  }
+.overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: block;
+}
 
-  .overlay button {
-      font:600 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-      background-color: #3386c0;
-      color: #fff;
-      display: block;
-      margin: 5px 0 0 0;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-      border-radius: 3px;
-  }
+.overlay button {
+  font: 600 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+  background-color: #3386c0;
+  color: #fff;
+  display: block;
+  margin: 5px 0 0 0;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
 
-  .overlay button:hover {
-      background-color:#4ea0da;
-  }
+.overlay button:hover {
+  background-color: #4ea0da;
+}
 
-  /* Contact form */
+/* Contact form */
 form label {
   font-size: 1.2em;
   font-weight: bold;
   display: block;
   padding: 10px 0;
 }
- 
+
 form input#name,
 form input#email,
 form input#subject {
   width: 400px;
   background-color: #fafafa;
   -webkit-border-radius: 3px;
-     -moz-border-radius: 3px;
-          border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
   border: 1px solid #cccccc;
   padding: 5px;
   font-size: 1.1em;
 }
- 
+
 form textarea#message {
   width: 500px;
   height: 100px;
   background-color: #fafafa;
   -webkit-border-radius: 3px;
-     -moz-border-radius: 3px;
-          border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
   border: 1px solid #cccccc;
   margin-bottom: 10px;
   padding: 5px;
   font-size: 1.1em;
 }
- 
+
 form input#submit {
   display: block;
-  -webkit-border-radius: 3px; 
-     -moz-border-radius: 3px;
-          border-radius: 3px;
-  border:1px solid #d8d8d8;
-  padding: 10px; 
-  font-weight:bold; 
-  text-align: center; 
-  color: #000000; 
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #d8d8d8;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  color: #000000;
   background-color: #f4f4f4;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f4f4f4), color-stop(100%, #e5e5e5));
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #f4f4f4),
+    color-stop(100%, #e5e5e5)
+  );
   background-image: -webkit-linear-gradient(top, #f4f4f4, #e5e5e5);
   background-image: -moz-linear-gradient(top, #f4f4f4, #e5e5e5);
   background-image: -ms-linear-gradient(top, #f4f4f4, #e5e5e5);
   background-image: -o-linear-gradient(top, #f4f4f4, #e5e5e5);
-  background-image: linear-gradient(top, #f4f4f4, #e5e5e5);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#f4f4f4, endColorstr=#e5e5e5);
+  background-image: linear-gradient(top, #f4f4f4, #e5e5e5);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#f4f4f4, endColorstr=#e5e5e5);
 }
- 
-form input#submit:hover{
+
+form input#submit:hover {
   cursor: pointer;
-  border:1px solid #c1c1c1; 
+  border: 1px solid #c1c1c1;
   background-color: #dbdbdb;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dbdbdb), color-stop(100%, #cccccc));
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #dbdbdb),
+    color-stop(100%, #cccccc)
+  );
   background-image: -webkit-linear-gradient(top, #dbdbdb, #cccccc);
   background-image: -moz-linear-gradient(top, #dbdbdb, #cccccc);
   background-image: -ms-linear-gradient(top, #dbdbdb, #cccccc);
   background-image: -o-linear-gradient(top, #dbdbdb, #cccccc);
-  background-image: linear-gradient(top, #dbdbdb, #cccccc);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#dbdbdb, endColorstr=#cccccc);
+  background-image: linear-gradient(top, #dbdbdb, #cccccc);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#dbdbdb, endColorstr=#cccccc);
 }
 
 /* Message flashing */
 .flash {
-  background-color: #FBB0B0;
+  background-color: #fbb0b0;
   padding: 10px;
   width: 400px;
 }

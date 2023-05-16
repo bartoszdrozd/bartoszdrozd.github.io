@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block title %}My trips{% endblock %} {% block
+content %} 
+
+<main class="col12 md:col8 lg:col6 mxauto mt5 pl2 pr2">
+    <header>
+      <h2 id="about">Hi, I'm Bartosz.</h2>
+    </header>
+    <div class="clearfix">
+    <a><img src="{{ url_for('static', filename='img/astrodog-cut.png') }}" alt="NOPE" class="rounded float-end ml3 d-block" style="width:175px"></a>
+  
+      <!-- <p>I'm just a simple man, trying to make my way in the universe.
+      <br>
+      <br> -->
+  
+      I am 26 and I live with my girlfriend and my Bernese Mountain Dog in Wrocław, Poland. I make a living working as a Software Tester.</p>
+      <p>I am passionate about space exploration and Earth observation. In my free time I like to walk with my Bernese Mountain Dog, ride my bike around and visit places I've never been to.</p>
+    </div>
+  
+
+{% endblock content %}

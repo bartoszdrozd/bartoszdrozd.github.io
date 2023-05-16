@@ -6,15 +6,9 @@ from flask import render_template, flash, redirect, request, session, g, url_for
 from app.forms import ContactForm
 from flask_mail import Message, Mail
 
-
-"""@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static/img'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')"""
-
 @app.route('/')
 def home():
-    return render_template('about.html')
+    return render_template('home.html')
 
 @app.route('/about/')
 def index():

@@ -55,6 +55,11 @@ class ContactForm(FlaskForm):
     message = TextAreaField("Message", validators=[DataRequired("Please enter a message.")])
     submit = SubmitField("Send")
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'app', 'static', 'img'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 """@app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),

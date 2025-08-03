@@ -4,6 +4,15 @@ import json
 import requests
 from geojson import Point, Feature
 from flask import Flask, render_template, send_from_directory, redirect, request, session, g, url_for, abort, flash
+
+# Fix for Python 3.12 compatibility
+try:
+    from collections.abc import Mapping
+except ImportError:
+    from collections import Mapping
+import collections
+collections.Mapping = Mapping
+
 from flask_frozen import Freezer
 from flask_fontawesome import FontAwesome
 from dotenv import find_dotenv, load_dotenv
@@ -18,7 +27,7 @@ load_dotenv(dotenv_path)
 FONTAWESOME_SERVE_LOCAL = True 
 
 mail = Mail()
-app = Flask(__name__)
+app = Flask(__name__, template_folder='app/templates', static_folder='app/static')
 app.config.from_object(__name__)
 freezer = Freezer(app)
 fa = FontAwesome(app)
@@ -27,8 +36,9 @@ name="Bartosz Drozd"
 app.config.from_envvar('APP_CONFIG_FILE', silent=True)
 
 MAPBOX_ACCESS_KEY = os.environ.get('MAPBOX_ACCESS_KEY')
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-app.config['WTF_CSRF_SECRET_KEY'] = os.getenv('SECRET_KEY')
+secret_key = os.environ.get('SECRET_KEY') or 'dev-secret-key-change-in-production'
+app.config['SECRET_KEY'] = secret_key
+app.config['WTF_CSRF_SECRET_KEY'] = secret_key
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT']=465
 app.config['MAIL_USE_SSL']=1

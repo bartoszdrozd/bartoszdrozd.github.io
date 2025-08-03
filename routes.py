@@ -1,10 +1,19 @@
 from app import app
-from flask import render_template
+from flask import render_template, request, flash, send_from_directory
+from flask_mail import Message
+from app.forms import ContactForm
+from config import Config
+import os
 
-"""@app.route('/favicon.ico')
+MAPBOX_ACCESS_KEY = os.environ.get('MAPBOX_ACCESS_KEY')
+
+# Get mail instance from app
+from app import mail
+
+@app.route('/favicon.ico')
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')"""
+    return send_from_directory(os.path.join(app.root_path, 'static', 'img'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/')
 def home():
@@ -28,14 +37,8 @@ def trips():
 
 @app.route('/eurotrip18/')
 def trip18():
-    #route_data = get_route_data()
-    #stop_locations = create_stop_locations_details()
     return render_template('eurotrip18.html',
         ACCESS_KEY=MAPBOX_ACCESS_KEY)
-    """
-        route_data = route_data,
-        stop_locations = stop_locations
-    )"""
 
 @app.route('/eurotrip19/')
 def trip19():

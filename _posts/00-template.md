@@ -1,4 +1,3 @@
-# Sample Blog Post Template
 ---
 layout: post
 title: "Your Post Title"
@@ -9,7 +8,7 @@ tags: [tag1, tag2, tag3]
 excerpt: "A short summary of your post (optional)"
 ---
 
-# Your Content Here
+# Sample Blog Post Template
 
 Write your blog post in **Markdown**.
 

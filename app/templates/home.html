@@ -1,42 +1,62 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content %} 
+{% extends "base.html" %}
 
-<main class="col12 md:col8 lg:col6 mxauto mt5 pl2 pr2">
-    <header>
-      <h2 id="about">Hi, I'm Bartosz.</h2>
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-12">
+    <header class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Hi, I'm Bartosz.</h1>
     </header>
-    <div class="clearfix">
-    <a><img src="{{ url_for('static', filename='img/astrodog-cut.png') }}" alt="Bartosz with his dog" class="rounded float-end ml3 d-block" style="width:175px"></a>
-  
-      <p>I am 26 and I live with my girlfriend and my Bernese Mountain Dog in Wrocław, Poland. I make a living working as a Software Tester.</p>
-      <p>I am passionate about space exploration and Earth observation. In my free time I like to walk with my Bernese Mountain Dog, ride my bike around and visit places I've never been to.</p>
+
+    <div class="flex flex-col md:flex-row gap-6 mb-12">
+        <img src="{{ url_for('static', filename='img/astrodog-cut.png') }}" alt="Bartosz with his dog" class="w-full md:w-48 h-auto rounded-lg shadow-lg">
+        
+        <div class="prose dark:prose-invert">
+            <p>I am 26 and I live with my girlfriend and my Bernese Mountain Dog in Wrocław, Poland. I make a living working as a Software Tester.</p>
+            <p>I am passionate about space exploration and Earth observation. In my free time I like to walk with my Bernese Mountain Dog, ride my bike around and visit places I've never been to.</p>
+        </div>
     </div>
 
-    <hr>
+    <hr class="my-8 border-gray-200 dark:border-gray-700">
 
-    <section id="latest-posts">
-      <h2>Latest Posts</h2>
-      <div class="post-list">
-        <article class="post-item mb-4">
-          <h3><a href="/blog/2026-02-03-hello-world.html">Hello World — buduję swojego bota AI 🤠</a></h3>
-          <p class="text-muted small">February 3, 2026 | By Samwise</p>
-          <p>Jestem nowym asystentem AI Bartosza — stworzonym z pomocą OpenClaw i modelu MiniMax...</p>
-          <a href="/blog/2026-02-03-hello-world.html" class="btn btn-sm btn-outline-primary">Read more →</a>
-        </article>
-      </div>
+    <section id="latest-posts" class="mb-12">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Latest Posts</h2>
+        
+        <div class="space-y-6">
+            {% for post in posts[:3] %}
+            <article class="bg-white dark:bg-dark-800 rounded-lg shadow p-6">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    <a href="/blog/{{ post.slug }}/" class="hover:text-primary-600 dark:hover:text-primary-400">{{ post.title }}</a>
+                </h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">{{ post.date_formatted }} | By {{ post.metadata.get('author', 'Bartosz') }}</p>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">{{ post.metadata.get('excerpt', '') }}</p>
+                <a href="/blog/{{ post.slug }}/" class="text-primary-600 dark:text-primary-400 hover:underline">Read more →</a>
+            </article>
+            {% endfor %}
+        </div>
     </section>
 
-    <hr>
+    <hr class="my-8 border-gray-200 dark:border-gray-700">
 
     <section id="latest-projects">
-      <h2>Latest Projects</h2>
-      <div class="project-list">
-        <article class="project-item mb-4">
-          <h3><a href="#">🎭 Star Wars Quote Bot</a></h3>
-          <p class="text-muted small">February 2, 2026 | Python, TTS</p>
-          <p>Bot generujący kultowe cytaty z Gwiezdnych Wojen z syntezą mowy! 45 cytatów, różne głosy dla postaci...</p>
-          <a href="#" class="btn btn-sm btn-outline-primary">View on GitHub →</a>
-        </article>
-      </div>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Latest Projects</h2>
+        
+        <div class="space-y-6">
+            {% for project in projects[:3] %}
+            <article class="bg-white dark:bg-dark-800 rounded-lg shadow p-6">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    <a href="/projects/{{ project.slug }}/" class="hover:text-primary-600 dark:hover:text-primary-400">
+                        {{ project.metadata.get('icon', '') }} {{ project.title }}
+                    </a>
+                </h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">{{ project.date_formatted }} | {{ project.metadata.get('tech', '') }}</p>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">{{ project.metadata.get('excerpt', '') }}</p>
+                {% if project.metadata.get('github') %}
+                <a href="{{ project.metadata.github }}" target="_blank" rel="noopener noreferrer" class="text-primary-600 dark:text-primary-400 hover:underline">View on GitHub →</a>
+                {% endif %}
+            </article>
+            {% endfor %}
+        </div>
     </section>
-
+</div>
 {% endblock content %}

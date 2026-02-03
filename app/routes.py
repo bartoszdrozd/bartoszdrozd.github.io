@@ -5,7 +5,9 @@ from app.blog import get_posts, get_post, get_projects, get_project
 # Existing routes...
 @app.route('/')
 def home():
-    return render_template('home.html')
+    posts = get_posts()[:3]
+    projects = get_projects()[:3]
+    return render_template('home.html', posts=posts, projects=projects)
 
 @app.route('/about/')
 def about():

@@ -1,12 +1,12 @@
 {
-  "name": "Bartosz Drozd Portfolio",
+  "name": "bartosz-drozd-portfolio",
   "version": "2.0.0",
   "description": "Modern portfolio with blog",
   "scripts": {
-    "dev": "npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch",
-    "build": "npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --minify",
-    "serve": "python3 routes.py debug",
-    "build:static": "python3 routes.py build"
+    "dev": "npx tailwindcss -i ./app/static/css/input.css -o ./app/static/css/output.css --watch",
+    "build": "npx tailwindcss -i ./app/static/css/input.css -o ./app/static/css/output.css --minify",
+    "serve": "flask --app app run --debug",
+    "build:static": "flask --app app freeze"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",

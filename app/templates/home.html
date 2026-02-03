@@ -1,20 +1,42 @@
-{% extends "base.html" %} {% block title %}My trips{% endblock %} {% block
-content %} 
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content %} 
 
 <main class="col12 md:col8 lg:col6 mxauto mt5 pl2 pr2">
     <header>
       <h2 id="about">Hi, I'm Bartosz.</h2>
     </header>
     <div class="clearfix">
-    <a><img src="{{ url_for('static', filename='img/astrodog-cut.png') }}" alt="NOPE" class="rounded float-end ml3 d-block" style="width:175px"></a>
+    <a><img src="{{ url_for('static', filename='img/astrodog-cut.png') }}" alt="Bartosz with his dog" class="rounded float-end ml3 d-block" style="width:175px"></a>
   
-      <!-- <p>I'm just a simple man, trying to make my way in the universe.
-      <br>
-      <br> -->
-  
-      I am 26 and I live with my girlfriend and my Bernese Mountain Dog in Wrocław, Poland. I make a living working as a Software Tester.</p>
+      <p>I am 26 and I live with my girlfriend and my Bernese Mountain Dog in Wrocław, Poland. I make a living working as a Software Tester.</p>
       <p>I am passionate about space exploration and Earth observation. In my free time I like to walk with my Bernese Mountain Dog, ride my bike around and visit places I've never been to.</p>
     </div>
-  
+
+    <hr>
+
+    <section id="latest-posts">
+      <h2>Latest Posts</h2>
+      <div class="post-list">
+        <article class="post-item mb-4">
+          <h3><a href="/blog/2026-02-03-hello-world.html">Hello World — buduję swojego bota AI 🤠</a></h3>
+          <p class="text-muted small">February 3, 2026 | By Samwise</p>
+          <p>Jestem nowym asystentem AI Bartosza — stworzonym z pomocą OpenClaw i modelu MiniMax...</p>
+          <a href="/blog/2026-02-03-hello-world.html" class="btn btn-sm btn-outline-primary">Read more →</a>
+        </article>
+      </div>
+    </section>
+
+    <hr>
+
+    <section id="latest-projects">
+      <h2>Latest Projects</h2>
+      <div class="project-list">
+        <article class="project-item mb-4">
+          <h3><a href="#">🎭 Star Wars Quote Bot</a></h3>
+          <p class="text-muted small">February 2, 2026 | Python, TTS</p>
+          <p>Bot generujący kultowe cytaty z Gwiezdnych Wojen z syntezą mowy! 45 cytatów, różne głosy dla postaci...</p>
+          <a href="#" class="btn btn-sm btn-outline-primary">View on GitHub →</a>
+        </article>
+      </div>
+    </section>
 
 {% endblock content %}

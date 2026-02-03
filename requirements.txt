@@ -1,12 +1,9 @@
 # Modern Flask Stack
 Flask>=3.0.0
-Flask-Frozen>=0.15
+Frozen-Flask>=0.15
 Flask-WTF>=1.2.0
 Flask-Mail>=0.9.1
 Flask-FontAwesome>=0.1.5
-
-# Frontend
-tailwindcss>=4.0.0
 
 # Data & Utilities
 Markdown>=3.5.0

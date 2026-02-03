@@ -1,27 +1,21 @@
-blinker==1.4
-certifi==2021.5.30
-chardet==4.0.0
-click==7.1.2
-dnspython==2.1.0
-elsa==0.1.6
-email-validator==1.1.3
-Flask==1.1.2
-Flask-FontAwesome==0.1.5
-Flask-Mail==0.9.1
-Flask-WTF==0.15.1
-Frozen-Flask==0.15
-geojson==2.5.0
-ghp-import==1.1.0
-gunicorn==20.1.0
-idna==2.10
-itsdangerous==1.1.0
-Jinja2==2.11.3
-Markdown==3.3.4
-MarkupSafe==1.1.1
-python-dateutil==2.8.1
-python-dotenv==0.17.1
-requests==2.25.1
-six==1.16.0
-urllib3==1.26.5
-Werkzeug==1.0.1
-WTForms==2.3.3
+# Modern Flask Stack
+Flask>=3.0.0
+Flask-Frozen>=0.15
+Flask-WTF>=1.2.0
+Flask-Mail>=0.9.1
+Flask-FontAwesome>=0.1.5
+
+# Frontend
+tailwindcss>=4.0.0
+
+# Data & Utilities
+Markdown>=3.5.0
+PyYAML>=6.0.1
+python-frontmatter>=1.1.0
+python-dateutil>=2.8.2
+
+# Maps (optional)
+folium>=0.15.0
+
+# Server (optional)
+gunicorn>=21.0.0

@@ -1,17 +1,16 @@
-import requests
-import os
+from flask import Flask, render_template, abort, url_for
 from app import app
-from config import Config
-from flask import render_template, flash, redirect, request, session, g, url_for, abort, flash, send_from_directory
-from app.forms import ContactForm
-from flask_mail import Message, Mail
+from app.blog import get_posts, get_post, get_projects, get_project
 
+# Existing routes...
 @app.route('/')
 def home():
-    return render_template('home.html')
+    posts = get_posts()[:3]
+    projects = get_projects()[:3]
+    return render_template('home.html', posts=posts, projects=projects)
 
 @app.route('/about/')
-def index():
+def about():
     return render_template('about.html')
 
 @app.route('/my-projects/')
@@ -26,47 +25,35 @@ def resume():
 def trips():
     return render_template('my-trips.html')
 
-@app.route('/eurotrip18/')
-def trip18():
-    #route_data = get_route_data()
-    #stop_locations = create_stop_locations_details()
-    return render_template('eurotrip18.html',
-        ACCESS_KEY=app.config['MAPBOX_ACCESS_KEY'])
-    """
-        route_data = route_data,
-        stop_locations = stop_locations
-    )"""
-
-@app.route('/eurotrip19/')
-def trip19():
-    return render_template('eurotrip19.html',
-        ACCESS_KEY=app.config['MAPBOX_ACCESS_KEY'])
-
-@app.route('/iss-tracker')
-def issTracker():
-    return render_template('iss.html')
-
-@app.route('/contact/', methods=['GET', 'POST'])
+@app.route('/contact/')
 def contact():
-    form = ContactForm()
- 
-    if request.method == 'POST':
-        if form.validate() == False:
-            flash('All fields are required.')
-            return render_template('contact.html', form=form)
-        else:
-            msg = Message(form.subject.data, sender='error.logger.test@gmail.com', recipients=['error.logger.test@gmail.com'])
-            msg.body = """
-            From: %s <%s>
-            %s
-            """ % (form.name.data, form.email.data, form.message.data)
+    return render_template('contact.html')
 
-            mail.send(msg)
+# Blog routes
+@app.route('/blog/')
+def blog():
+    posts = get_posts()
+    return render_template('blog.html', posts=posts)
 
-            return render_template('valid-form.html')
+@app.route('/blog/<slug>/')
+def blog_post(slug):
+    post = get_post(slug)
+    if not post:
+        abort(404)
+    return render_template('post.html', post=post)
 
-    elif request.method == 'GET':
-        return render_template('contact.html', form=form)
+# Projects routes
+@app.route('/projects/')
+def projects():
+    projects_list = get_projects()
+    return render_template('projects.html', projects=projects_list)
+
+@app.route('/projects/<slug>/')
+def project_detail(slug):
+    project = get_project(slug)
+    if not project:
+        abort(404)
+    return render_template('project.html', project=project)
 
 @app.errorhandler(404)
 def not_found_error(error):
